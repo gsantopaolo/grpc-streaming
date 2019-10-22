@@ -1,1 +1,0 @@
-C:\Users\g_san\source\repos\WpfApp2\Client_UWP\Client_UWP.csproj;x86

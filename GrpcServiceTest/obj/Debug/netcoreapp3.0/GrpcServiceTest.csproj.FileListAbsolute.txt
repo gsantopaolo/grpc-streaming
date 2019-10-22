@@ -1,6 +1,0 @@
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\GrpcServiceTest.csprojAssemblyReference.cache
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\staticwebassets\GrpcServiceTest.StaticWebAssets.Manifest.cache
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\staticwebassets\GrpcServiceTest.StaticWebAssets.xml
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\GrpcServiceTest.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\GrpcServiceTest.AssemblyInfoInputs.cache
-C:\Users\g_san\source\repos\WpfApp2\GrpcServiceTest\obj\Debug\netcoreapp3.0\GrpcServiceTest.AssemblyInfo.cs

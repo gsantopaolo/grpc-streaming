@@ -1,2 +1,0 @@
-obj\x86\Debug\netcoreapp3.0/VideoStream1.cs \
-obj\x86\Debug\netcoreapp3.0/VideoStream1Grpc.cs: ../Protos/VideoStream1.proto
