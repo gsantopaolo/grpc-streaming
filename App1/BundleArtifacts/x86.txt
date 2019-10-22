@@ -1,0 +1,2 @@
+MainPackage=C:\Users\g_san\source\repos\WpfApp2\App1\bin\x86\Debug\App1_1.0.0.0_x86_Debug.msix
+SymbolPackage=C:\Users\g_san\source\repos\WpfApp2\App1\obj\x86\Debug\Symbols\App1_1.0.0.0_x86_Debug.appxsym

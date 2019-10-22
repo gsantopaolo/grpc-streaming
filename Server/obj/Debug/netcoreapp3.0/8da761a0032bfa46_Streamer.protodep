@@ -1,0 +1,2 @@
+obj\Debug\netcoreapp3.0/Streamer.cs \
+obj\Debug\netcoreapp3.0/StreamerGrpc.cs: ../Protos/Streamer.proto

@@ -1,0 +1,11 @@
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\App1.csprojAssemblyReference.cache
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\App.g.i.cs
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\App.g.cs
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\MainPage.g.i.cs
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\MainPage.g.cs
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\XamlTypeInfo.g.cs
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\App.xaml
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\MainPage.xaml
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\App.xbf
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\MainPage.xbf
+C:\Users\g_san\source\repos\WpfApp2\App1\obj\x64\Debug\XamlSaveStateFile.xml

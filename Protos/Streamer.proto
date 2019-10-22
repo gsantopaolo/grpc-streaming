@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package stream;
+
+// service definition
+service StreamerService {
+  // bidirectional streaming
+  rpc Stream (stream Frame) returns (stream Frame);
+}
+
+// The request message containing the user's name.
+message Frame {
+  string username = 1;
+  string message = 2;
+  bytes content = 3;
+}
+

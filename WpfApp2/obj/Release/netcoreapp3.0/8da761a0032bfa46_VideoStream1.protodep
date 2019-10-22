@@ -1,0 +1,2 @@
+obj\Release\netcoreapp3.0/VideoStream1.cs \
+obj\Release\netcoreapp3.0/VideoStream1Grpc.cs: ../Protos/VideoStream1.proto

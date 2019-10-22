@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\Protos\VideoStream1.proto" GrpcServices="Server" Link="Protos\VideoStream1.proto" />
+    <PackageReference Include="Google.Protobuf" Version="3.10.0" />
+
+    <PackageReference Include="Grpc.Core" Version="2.24.0">
+      <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PackageReference>
+    
+    <PackageReference Include="Grpc.Tools" Version="2.24.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PackageReference>
+    
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+  </ItemGroup>
+
+</Project>
