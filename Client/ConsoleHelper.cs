@@ -96,6 +96,11 @@ using System.Threading;
 
 namespace Client
 {
+    public enum LineType
+    {
+        singleLine,
+        doubleLine
+    }
     /// <summary>
     /// Provides methods for easy console output, input and formatting.
     /// Wrote some methods by myself and also integrated works of the guys at these links
@@ -842,6 +847,7 @@ namespace Client
         #endregion Interaction
 
         #region Drawings
+ 
         /// <summary>
         /// Draws a rectangle inside the console
         /// </summary>
@@ -849,30 +855,48 @@ namespace Client
         /// <param name="height">Width in chars of the rectangle</param>
         /// <param name="location">location.Y will be Console.CursorTop, location.Y will be Console.CursorLeft. </param>
         /// <param name="borderColor">Rectangle color</param>
-        public static void DrawRectangle(int width, int height, Point location, ConsoleColor borderColor)
+        public static void DrawRectangle(int width, int height, Point location, ConsoleColor borderColor = ConsoleColor.Gray, LineType lineType = LineType.singleLine)
         {
-            string s = "╔";
+            //https://en.wikipedia.org/wiki/Windows-1252
+            string topLeftAngle = "┌";
+            string topRightAngle = "┐";
+            string bottomLeftAngle = "└";
+            string bottomRightAngle = "┘";
+            string horizontal = "─";
+            string vertical = "│";
+
+            if (lineType == LineType.doubleLine)
+            {
+                topLeftAngle = "╔";
+                topRightAngle = "╗";
+                bottomLeftAngle = "╚";
+                bottomRightAngle = "═";
+                horizontal = "═";
+                vertical = "║";
+            }
+
+            string s = topLeftAngle;
             string space = "";
             string temp = "";
             for (int i = 0; i < width; i++)
             {
                 space += " ";
-                s += "═";
+                s += horizontal;
             }
 
             for (int j = 0; j < location.X; j++)
                 temp += " ";
 
-            s += "╗" + "\n";
+            s += topRightAngle + "\n";
 
             for (int i = 0; i < height; i++)
-                s += temp + "║" + space + "║" + "\n";
+                s += temp + vertical + space + vertical + "\n";
 
-            s += temp + "╚";
+            s += temp + bottomLeftAngle;
             for (int i = 0; i < width; i++)
-                s += "═";
+                s += horizontal;
 
-            s += "╝" + "\n";
+            s += bottomRightAngle + "\n";
 
             Console.ForegroundColor = borderColor;
             Console.CursorTop = location.Y;
@@ -888,7 +912,7 @@ namespace Client
         /// <param name="top">row</param>
         /// <param name="width">line width</param>
         /// <param name="lineColor">line color</param>
-        public static void DrawLine(int left, int top, int width, ConsoleColor lineColor)
+        public static void DrawLine(int left, int top, int width, ConsoleColor lineColor = ConsoleColor.Gray, LineType lineType = LineType.singleLine)
         {
             if (left >= Console.BufferWidth)
                 return;
@@ -897,10 +921,12 @@ namespace Client
             if (width + left - 1 >= Console.BufferWidth)
                 return;
 
+            string lineSymbol = lineType == LineType.singleLine ? "─" : "═";
+
             string s = "";
             for (int i = 0; i < width; i++)
             {
-                s += "═";
+                s += lineSymbol;
             }
             Console.ForegroundColor = lineColor;
 
@@ -912,7 +938,7 @@ namespace Client
         #endregion
 
         #region text
-        public static void WriteCenteredText(string text, int top, ConsoleColor textColor = ConsoleColor.White)
+        public static void WriteCenteredText(string text, int top, ConsoleColor textColor = ConsoleColor.Gray)
         {
             if (top >= Console.BufferWidth)
                 return;
