@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package sensorsystem;
+
+// service definition
+service SensorService {
+  // unary
+  rpc GetAvailableSensors (AvailableSensorsRequest) returns (AvailableSensorsResponse);
+
+  // Client streaming
+  rpc SendSensorData (stream SensorData) returns (SensorDataResponse);
+  rpc SendSensorDataNoResponse (stream SensorData) returns (google.protobuf.Empty);
+
+  // Server streaming
+  rpc SendTemperatureUpdates (TemperatureRequest) returns (stream TemperatureData);
+}
+
+// The request message
+message AvailableSensorsRequest {
+  string username = 1;
+  string message = 2;
+}
+
+// The response message
+message AvailableSensorsResponse {
+  string message = 1;
+  string devices = 2;
+}
+
+message SensorData {
+  string data1 = 1;
+  int32 data2 = 2;
+}
+
+message SensorDataResponse {
+  string message = 1;
+}
+
+message Device {
+  string username = 1;
+  string message = 2;
+  bytes content = 3;
+}
+
+message TemperatureRequest {
+  int32 deviceid = 1;
+}
+
+message TemperatureData {
+  string devicelocation = 1;
+  int32 temperature = 2;
+}
