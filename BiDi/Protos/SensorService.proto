@@ -16,6 +16,15 @@ service SensorService {
   // Server streaming
   rpc ReceiveTemperatureUpdates (TemperatureRequest) returns (stream TemperatureData);
 
+  // BI-Directional streaming
+  rpc foo (stream SensorData) returns (stream SensorData);
+
+  rpc join (stream ChatMessage) returns (stream ChatMessage) {}    
+}
+
+message ChatMessage {
+  string user = 1;
+  string text = 2;
 }
 
 // The request message
@@ -31,8 +40,9 @@ message AvailableSensorsResponse {
 }
 
 message SensorData {
-  string data1 = 1;
-  int32 data2 = 2;
+	int32 sensorID = 1;
+	string data1 = 2;
+	int32 data2 = 3;
 }
 
 message SensorDataResponse {

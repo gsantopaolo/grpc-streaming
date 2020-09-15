@@ -15,7 +15,8 @@ namespace Client
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var client = new SensorService.SensorServiceClient(channel);
 
-            var reply = await client.GetAvailableSensorsAsync(new Sensorsystem.AvailableSensorsRequest { Username = "username", Message = "message from client", });
+            var reply = await client.GetAvailableSensorsAsync(new Sensorsystem.AvailableSensorsRequest 
+                { Username = "username", Message = "message from client", });
             Console.WriteLine($"Server response: { reply.Message }");
             Console.WriteLine($"Devices from server: { reply.Devices }");
             

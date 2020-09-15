@@ -57,12 +57,40 @@ namespace Server
             {
                 _logger.LogInformation($"Sending temperature data to device id: {request.Deviceid}.");
 
-                await responseStream.WriteAsync(new TemperatureData { Devicelocation = "", Temperature = randomizer.Next(1, 100)});
+                await responseStream.WriteAsync(new TemperatureData { Devicelocation = "", Temperature = randomizer.Next(1, 100) });
 
                 await Task.Delay(500);
             }
 
             _logger.LogInformation($"stop streaming temperature data to device id: {request.Deviceid}");
         }
+
+        //public override Task foo(IAsyncStreamReader<SensorData> requestStream, IServerStreamWriter<SensorData> responseStream, ServerCallContext context)
+        //{
+        //    // Read incoming messages in a background task
+        //    SensorData? lastMessageReceived = null;
+        //    var readTask = Task.Run(async () =>
+        //    {
+        //        await foreach (var message in requestStream.ReadAllAsync())
+        //        {
+        //            lastMessageReceived = message;
+        //        }
+        //    });
+        //}
+
+        public override async Task join(IAsyncStreamReader<Message> requestStream, IServerStreamWriter<Message> responseStream, ServerCallContext context)
+        {
+            if (!await requestStream.MoveNext()) return;
+
+            do
+            {
+                _chatroomService.Join(requestStream.Current.User, responseStream);
+                await _chatroomService.BroadcastMessageAsync(requestStream.Current);
+            } while (await requestStream.MoveNext());
+
+            _chatroomService.Remove(context.Peer);
+
+        }
+
     }
 }
