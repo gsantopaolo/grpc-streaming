@@ -12,66 +12,50 @@ namespace Client
     {
         static async Task Main(string[] args)
         {
+            var randomizer = new Random(); 
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var client = new SensorService.SensorServiceClient(channel);
 
-            //Task unarySend = SendUnaryDataAasync(client);
-            //Task clientStreaming = SendStremingDataAasync(client);
-            Task serverStreaming = ReceiveStreamingDataAsync(client, 1);
+            Console.WriteLine("Please type the device ID:");
+            var line = Console.ReadLine();
 
-            //await Task.WhenAll(unarySend, clientStreaming, serverStreaming);
+            int sensorId = 0;
+            int.TryParse(line, out sensorId);
 
-            await Task.WhenAll(serverStreaming);
 
+            using (var cli = client.StreamData())
+            {
+                _ = Task.Run(async () =>
+                {
+                    while (await cli.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
+                    {
+                        var response = cli.ResponseStream.Current;
+                        Console.WriteLine($"Receiving data from Sensor {response.SensorID} sent data1 {response.Data1}, data2 {response.Data2}");
+                    }
+                });
+
+
+                Console.WriteLine("Press any key to send random data or Q to stop.");
+
+                while ((line = Console.ReadLine()) != null)
+                {
+                    if (line.ToLower() == "q")
+                    {
+                        break;
+                    }
+                        
+                    int data1 = randomizer.Next(1, 100), data2 = randomizer.Next(1, 100);
+                    await cli.RequestStream.WriteAsync(new SensorData { SensorID = sensorId, Data1 = data1.ToString(), Data2 = data2});
+                    Console.WriteLine($"Sending data Sensor {sensorId} data1 {data1}, data2 {data2}");
+                }
+            }
+
+            await channel.ShutdownAsync();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
 
-        private static async Task SendUnaryDataAasync(SensorService.SensorServiceClient client)
-        {
-            await Task.Delay(2000);
-            var reply = await client.GetAvailableSensorsAsync(new Sensorsystem.AvailableSensorsRequest { Username = "username", Message = "message from client", });
-            Console.WriteLine($"Server response: { reply.Message }");
-            Console.WriteLine($"Devices from server: { reply.Devices }");
-        }
 
-        //client streaming
-        private static async Task SendStremingDataAasync(SensorService.SensorServiceClient client)
-        {
-            using var call = client.SendSensorData();
-            for (var i = 0; i < 100; i++)
-            {
-                await call.RequestStream.WriteAsync(new SensorData { Data1 = $"Message{i}, Data2 = {i}" });
-                await Task.Delay(200);
-            }
-
-            await call.RequestStream.CompleteAsync();
-
-            var response = await call;
-            Console.WriteLine($"Message response: {response.Message}");
-        }
-
-        //server streaming
-        private static async Task ReceiveStreamingDataAsync(SensorService.SensorServiceClient client, int deviceId)
-        {
-            var cts = new CancellationTokenSource();
-            cts.CancelAfter(TimeSpan.FromSeconds(5.0));
-
-            using (var call = client.ReceiveTemperatureUpdates(new TemperatureRequest { Deviceid = deviceId }, cancellationToken: cts.Token))
-            {
-                try
-                {
-                    await foreach (var message in call.ResponseStream.ReadAllAsync())
-                    {
-                        Console.WriteLine($"Temperature for device located at: {message.Devicelocation} is {message.Temperature}");
-                    }
-                }
-                catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
-                {
-                    Console.WriteLine("Stream canceled.");
-                }
-            }
-        }
     }
 }

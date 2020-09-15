@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,31 +66,37 @@ namespace Server
             _logger.LogInformation($"stop streaming temperature data to device id: {request.Deviceid}");
         }
 
-        //public override Task foo(IAsyncStreamReader<SensorData> requestStream, IServerStreamWriter<SensorData> responseStream, ServerCallContext context)
-        //{
-        //    // Read incoming messages in a background task
-        //    SensorData? lastMessageReceived = null;
-        //    var readTask = Task.Run(async () =>
-        //    {
-        //        await foreach (var message in requestStream.ReadAllAsync())
-        //        {
-        //            lastMessageReceived = message;
-        //        }
-        //    });
-        //}
+        private static ConcurrentDictionary<int, IServerStreamWriter<SensorData>> broadcastQueue = new ConcurrentDictionary<int, IServerStreamWriter<SensorData>>();
 
-        public override async Task join(IAsyncStreamReader<Message> requestStream, IServerStreamWriter<Message> responseStream, ServerCallContext context)
+
+        public override async Task StreamData(IAsyncStreamReader<SensorData> requestStream, IServerStreamWriter<SensorData> responseStream, ServerCallContext context)
         {
             if (!await requestStream.MoveNext()) return;
 
             do
             {
-                _chatroomService.Join(requestStream.Current.User, responseStream);
-                await _chatroomService.BroadcastMessageAsync(requestStream.Current);
+                broadcastQueue.TryAdd(requestStream.Current.SensorID, responseStream);
+                await BroadcastMessageAsync(requestStream.Current);
             } while (await requestStream.MoveNext());
+            
+            //broadcastQueue.TryRemove(context.Peer, out var _);
+        }
 
-            _chatroomService.Remove(context.Peer);
-
+        public async Task BroadcastMessageAsync(SensorData message)
+        {
+            foreach (var item in broadcastQueue.Where(x => x.Key != message.SensorID))
+            {
+                try
+                {
+                    _logger.LogInformation("Sending message", message);
+                    await item.Value.WriteAsync(message);
+                    //broadcastQueue.TryRemove(message.SensorID, out var _);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex.Message, ex);
+                }
+            }
         }
 
     }
