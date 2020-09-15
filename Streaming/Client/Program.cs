@@ -97,8 +97,8 @@ namespace Client
     //}
         #endregion
 
-        const string URL = "http://grpcservices.softwarelab.it:12345";
-        //const string URL = "http://localhost:12345";
+        //const string URL = "http://grpcservices.softwarelab.it:12345";
+        const string URL = "http://localhost:12345";
         static CancellationTokenSource cts;
 
         static PerformanceCounter cpuCounter;
@@ -110,6 +110,7 @@ namespace Client
 
         static async Task Main(string[] args)
         {
+            #region progressbar temporary removed 
             // Progress bar only if the output is interactive and can be overwritten. Otherwise,
             // all intermediate frames end up in the file being redirected to, in some form.
             //if (!ConsoleHelper.IsOutputRedirected)
@@ -134,10 +135,10 @@ namespace Client
             //    // Remove progress bar again
             //    ConsoleHelper.ProgressTotal = 0;
             //}
-
+            #endregion
 
             // Set the Title 
-            Console.Title = "gRPC Client:";
+            Console.Title = "gRPC Client";
 
             while (true)
             {

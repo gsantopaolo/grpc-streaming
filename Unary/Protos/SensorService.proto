@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package sensorsystem;
+
+// service definition
+service SensorService {
+  // unary
+  rpc GetAvailableSensors (AvailableSensorsRequest) returns (AvailableSensorsResponse);
+}
+
+// The request message
+message AvailableSensorsRequest {
+  string username = 1;
+  string message = 2;
+}
+
+// The response message
+message AvailableSensorsResponse {
+  string message = 1;
+  string devices = 2;
+}
+
+message Device {
+  string username = 1;
+  string message = 2;
+  bytes content = 3;
+}
+
