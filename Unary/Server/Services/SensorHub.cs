@@ -16,10 +16,10 @@ namespace Server
             _logger = logger;
         }
 
-
-
         public override Task<AvailableSensorsResponse> GetAvailableSensors(AvailableSensorsRequest request, ServerCallContext context)
         {
+            _logger.LogInformation($"received a GetAvailableSensors request : {request.Message}");
+
             return Task.FromResult(new AvailableSensorsResponse
             {
                 Message = "Hello from server",
