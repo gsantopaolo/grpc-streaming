@@ -17,6 +17,8 @@ namespace Server
         public SensorHub(ILogger<SensorHub> logger)
         {
             _logger = logger;
+
+            
         }
 
         public override Task<AvailableSensorsResponse> GetAvailableSensors(AvailableSensorsRequest request, ServerCallContext context)
@@ -95,9 +97,12 @@ namespace Server
                 catch (Exception ex)
                 {
                     _logger.LogError(ex.Message, ex);
+                    broadcastQueue.TryRemove(message.SensorID, out var _);
                 }
             }
         }
+
+        
 
     }
 }
