@@ -36,7 +36,7 @@ namespace Client
         private static async Task SendStremingDataAasync(SensorService.SensorServiceClient client)
         {
             using var call = client.SendSensorData();
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 20; i++)
             {
                 await call.RequestStream.WriteAsync(new SensorData { Data1 = $"Message{i}, Data2 = {i}" });
                 await Task.Delay(200);

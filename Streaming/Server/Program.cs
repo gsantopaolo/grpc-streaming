@@ -25,6 +25,7 @@ namespace Server
                 {
                     webBuilder.ConfigureKestrel(options =>
                     {
+                        //options.Listen(IPAddress.Any, 12345, listenOptions =>
                         options.Listen(IPAddress.Any, 12345, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http2;

@@ -13,92 +13,93 @@ namespace Client
     {
 
         #region some tests
-    //    public static int Main()
-    //{
-    //    // Reset unsupported character encoding for exotic languages to en-US
-    //    ConsoleHelper.FixEncoding();
+        //    public static int Main()
+        //{
+        //    // Reset unsupported character encoding for exotic languages to en-US
+        //    ConsoleHelper.FixEncoding();
 
-    //    // Show the message where the user can see it
-    //    if (ConsoleHelper.IsInteractiveAndVisible)
-    //    {
-    //        // Console is visible, also use colour for this text
-    //        ConsoleHelper.WriteLine("Hello console.", ConsoleColor.Red);
-    //    }
-    //    else
-    //    {
-    //        // Console is not visible, choose another output (non-interactive session,
-    //        // no console window allocated, or output redirected)
-    //        //MessageBox.Show("Hello window.");
-    //    }
+        //    // Show the message where the user can see it
+        //    if (ConsoleHelper.IsInteractiveAndVisible)
+        //    {
+        //        // Console is visible, also use colour for this text
+        //        ConsoleHelper.WriteLine("Hello console.", ConsoleColor.Red);
+        //    }
+        //    else
+        //    {
+        //        // Console is not visible, choose another output (non-interactive session,
+        //        // no console window allocated, or output redirected)
+        //        //MessageBox.Show("Hello window.");
+        //    }
 
-    //    // Interaction only if it is possible
-    //    if (!ConsoleHelper.IsInputRedirected)
-    //    {
-    //        Console.Write("Please enter your name: ");
-    //        Console.ReadLine();
-    //    }
+        //    // Interaction only if it is possible
+        //    if (!ConsoleHelper.IsInputRedirected)
+        //    {
+        //        Console.Write("Please enter your name: ");
+        //        Console.ReadLine();
+        //    }
 
-    //    // Move cursor and clear line
-    //    Console.Write("Your name is:");
-    //    ConsoleHelper.MoveCursor(-3);
-    //    Console.Write("needs more checking...");
-    //    ConsoleHelper.ClearLine();   // Oh well, doesn’t matter anyway.
+        //    // Move cursor and clear line
+        //    Console.Write("Your name is:");
+        //    ConsoleHelper.MoveCursor(-3);
+        //    Console.Write("needs more checking...");
+        //    ConsoleHelper.ClearLine();   // Oh well, doesn’t matter anyway.
 
-    //    // Progress bar only if the output is interactive and can be overwritten. Otherwise,
-    //    // all intermediate frames end up in the file being redirected to, in some form.
-    //    if (!ConsoleHelper.IsOutputRedirected)
-    //    {
-    //        // Activate progress bar and update it regularly
-    //        ConsoleHelper.ProgressTitle = "Downloading";
-    //        ConsoleHelper.ProgressTotal = 10;
-    //        for (int i = 0; i <= 10; i++)
-    //        {
-    //            ConsoleHelper.ProgressValue = i;
-    //            Thread.Sleep(500);
-    //            // Warning and error state is displayed in colour (yellow/red instead of green)
-    //            if (i >= 5)
-    //            {
-    //                ConsoleHelper.ProgressHasWarning = true;
-    //            }
-    //            if (i >= 8)
-    //            {
-    //                ConsoleHelper.ProgressHasError = true;
-    //            }
-    //        }
-    //        // Remove progress bar again
-    //        ConsoleHelper.ProgressTotal = 0;
-    //    }
+        //    // Progress bar only if the output is interactive and can be overwritten. Otherwise,
+        //    // all intermediate frames end up in the file being redirected to, in some form.
+        //    if (!ConsoleHelper.IsOutputRedirected)
+        //    {
+        //        // Activate progress bar and update it regularly
+        //        ConsoleHelper.ProgressTitle = "Downloading";
+        //        ConsoleHelper.ProgressTotal = 10;
+        //        for (int i = 0; i <= 10; i++)
+        //        {
+        //            ConsoleHelper.ProgressValue = i;
+        //            Thread.Sleep(500);
+        //            // Warning and error state is displayed in colour (yellow/red instead of green)
+        //            if (i >= 5)
+        //            {
+        //                ConsoleHelper.ProgressHasWarning = true;
+        //            }
+        //            if (i >= 8)
+        //            {
+        //                ConsoleHelper.ProgressHasError = true;
+        //            }
+        //        }
+        //        // Remove progress bar again
+        //        ConsoleHelper.ProgressTotal = 0;
+        //    }
 
-    //    // Show long text with proper word wrapping
-    //    ConsoleHelper.WriteWrapped("This very long text must be wrapped at the right end of the console window. But that should not tear apart words just where the line is over but move the excess word to the next line entirely. This will regard the actual width of the window.");
+        //    // Show long text with proper word wrapping
+        //    ConsoleHelper.WriteWrapped("This very long text must be wrapped at the right end of the console window. But that should not tear apart words just where the line is over but move the excess word to the next line entirely. This will regard the actual width of the window.");
 
-    //    ConsoleHelper.WriteWrapped("This also works for tabular output like a listing of command line parameters:");
+        //    ConsoleHelper.WriteWrapped("This also works for tabular output like a listing of command line parameters:");
 
-    //    // Line wrapping for tabular output
-    //    ConsoleHelper.WriteWrapped("  /a    Just a short note.", true);
-    //    ConsoleHelper.WriteWrapped("  /b    The text in the following lines is wrapped so that it continues under the last content column (that is this description). That is recognised by the last occurrence of two spaces.", true);
-    //    ConsoleHelper.WriteWrapped("  /cde  Nothing important, really.", true);
+        //    // Line wrapping for tabular output
+        //    ConsoleHelper.WriteWrapped("  /a    Just a short note.", true);
+        //    ConsoleHelper.WriteWrapped("  /b    The text in the following lines is wrapped so that it continues under the last content column (that is this description). That is recognised by the last occurrence of two spaces.", true);
+        //    ConsoleHelper.WriteWrapped("  /cde  Nothing important, really.", true);
 
-    //    // Clear input buffer to not use any premature keystrokes
-    //    ConsoleHelper.ClearKeyBuffer();
-    //    // Confirmation message with timeout (15 seconds) and vanishing dots
-    //    ConsoleHelper.Wait("Seen it all?", 15, true);
+        //    // Clear input buffer to not use any premature keystrokes
+        //    ConsoleHelper.ClearKeyBuffer();
+        //    // Confirmation message with timeout (15 seconds) and vanishing dots
+        //    ConsoleHelper.Wait("Seen it all?", 15, true);
 
-    //    // Simple wait for any input key (not Ctrl, Shift, NumLock, Mute, and so on)
-    //    ConsoleHelper.Wait();
+        //    // Simple wait for any input key (not Ctrl, Shift, NumLock, Mute, and so on)
+        //    ConsoleHelper.Wait();
 
-    //    // Prevent closing the console window after program end when running with the
-    //    // debugger in Visual Studio. Without the debugger, Visual Studio will wait
-    //    // already. Conforming things here.
-    //    ConsoleHelper.WaitIfDebug();
+        //    // Prevent closing the console window after program end when running with the
+        //    // debugger in Visual Studio. Without the debugger, Visual Studio will wait
+        //    // already. Conforming things here.
+        //    ConsoleHelper.WaitIfDebug();
 
-    //    // Show a red alert message and terminate the process with an exit code (12)
-    //    return ConsoleHelper.ExitError("All is lost!", 12);
-    //}
+        //    // Show a red alert message and terminate the process with an exit code (12)
+        //    return ConsoleHelper.ExitError("All is lost!", 12);
+        //}
         #endregion
 
         //const string URL = "http://grpcservices.softwarelab.it:12345";
         const string URL = "http://localhost:12345";
+        //const string URL = "http://20.71.173.110";
         static CancellationTokenSource cts;
 
         static PerformanceCounter cpuCounter;

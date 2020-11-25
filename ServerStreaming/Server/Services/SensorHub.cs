@@ -57,7 +57,7 @@ namespace Server
             {
                 _logger.LogInformation($"Sending temperature data to device id: {request.Deviceid}.");
 
-                await responseStream.WriteAsync(new TemperatureData { Devicelocation = "", Temperature = randomizer.Next(1, 100)});
+                await responseStream.WriteAsync(new TemperatureData { Devicelocation = "Switzerland", Temperature = randomizer.Next(1, 100)});
 
                 await Task.Delay(500);
             }
