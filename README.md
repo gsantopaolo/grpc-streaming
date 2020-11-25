@@ -2,6 +2,7 @@
 Everytime there is a new speech course material and samples got updated
 
 November 2020 - [Update Conference 2020](https://www.updateconference.net/) course material (ASP .Net Core 5)
+
 September 2020 - [FutureTech 2020](https://futuretech.nl/) course material (.Net Core 3.1)
 
 # Cloning the repository
