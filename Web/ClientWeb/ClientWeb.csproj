@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.33.1" />
+    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.33.1" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\Protos\SensorService.proto" GrpcServices="Server">
+			<Link>Protos\SensorService.proto</Link>
+		</Protobuf>
+	</ItemGroup>
+
+</Project>
