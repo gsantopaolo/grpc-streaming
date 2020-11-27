@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -10,6 +10,6 @@
 
 		<PackageReference Include="Google.Protobuf" Version="3.14.0" />
 		<PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
-		<PackageReference Include="Grpc.Tools" Version="2.34.0-pre1" PrivateAssets="All" />
+		<PackageReference Include="Grpc.Tools" Version="2.33.1" PrivateAssets="All" />
 	</ItemGroup>
 </Project>

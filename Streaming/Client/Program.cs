@@ -97,8 +97,8 @@ namespace Client
         //}
         #endregion
 
-        //const string URL = "http://grpcservices.softwarelab.it:12345";
-        const string URL = "http://localhost:12345";
+        const string URL = "http://grpcservices.softwarelab.it:12345";
+        //const string URL = "http://localhost:12345";
         //const string URL = "http://20.71.173.110";
         static CancellationTokenSource cts;
 

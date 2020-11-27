@@ -45,6 +45,8 @@ namespace Server
 
             app.UseRouting();
 
+            // app.UseGrpcWeb(); enables  gRPC-Web with ASP.NET Core to call a gRPC service from a browser
+            // Browser apps have limited HTTP/2 features and need to use gRPC-Web instead
             app.UseGrpcWeb();
 
             app.UseCors();
@@ -52,13 +54,7 @@ namespace Server
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<SensorHub>().EnableGrpcWeb().RequireCors("AllowAll"); ;
-                //endpoints.MapGrpcService<SensorHub>();
-
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-                //});
+                endpoints.MapGrpcService<SensorHub>().EnableGrpcWeb().RequireCors("AllowAll"); 
             });
         }
     }
