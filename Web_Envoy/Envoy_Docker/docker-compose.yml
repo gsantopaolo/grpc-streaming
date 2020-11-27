@@ -3,7 +3,7 @@ services:
   envoy:
     build:
       context: ./
-      dockerfile: ./net/grpc/gateway/docker/envoy/Dockerfile
+      dockerfile: ./envoy/Dockerfile
     image: grpcweb/envoy
     ports:
       - "8080:8080"

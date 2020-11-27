@@ -15,7 +15,6 @@
     <PackageReference Include="Grpc.AspNetCore.Server" Version="2.33.1" />
     <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.33.1" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.33.1" />
-    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.33.1" />
   </ItemGroup>
 
 </Project>

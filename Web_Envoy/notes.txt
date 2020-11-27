@@ -1,5 +1,0 @@
-docker-compose pull
-docker-compose up -d envoy
-
-the Envoy proxy. It listens at :8080 and forwards the browser’s gRPC-Web requests to port :9090.
-

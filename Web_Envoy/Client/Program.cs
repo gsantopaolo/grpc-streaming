@@ -13,7 +13,7 @@ namespace Client
         static async Task Main(string[] args)
         {
             var randomizer = new Random(); 
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://localhost:9090");
             var client = new SensorService.SensorServiceClient(channel);
 
             Console.WriteLine("Please type the device ID:");

@@ -45,20 +45,18 @@ namespace Server
 
             app.UseRouting();
 
-            app.UseGrpcWeb();
+            // we are not using app.UseGrpcWeb(); to enable browser app to call a gRPC service
+            // We are using an Envoy proxy instead
+            // Grpc.AspNetCore.Web package not needed for this scenario
+            // app.UseGrpcWeb();
 
             app.UseCors();
 
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<SensorHub>().EnableGrpcWeb().RequireCors("AllowAll"); ;
-                //endpoints.MapGrpcService<SensorHub>();
-
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-                //});
+                // .EnableGrpcWeb() removed because in this scenario we are using an Envoy proxy to 
+                // allow browser app to make gRPC calls 
+                endpoints.MapGrpcService<SensorHub>().RequireCors("AllowAll");
             });
         }
     }
