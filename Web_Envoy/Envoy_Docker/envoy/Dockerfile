@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM envoyproxy/envoy:v1.15.0
+FROM envoyproxy/envoy:v1.16.1
+
+RUN apt-get update
 
 COPY envoy/envoy.yaml /etc/envoy/envoy.yaml
 

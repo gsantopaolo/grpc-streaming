@@ -6,3 +6,22 @@ docker-compose up -d envoy
     envoy is the Envoy proxy. It listens at :8080 and forwards the browser’s gRPC-Web requests to port :9090.
 
 $ docker-compose down
+
+https://phoenixnap.com/kb/remove-docker-images-containers-networks-volumes
+list all Docker containers using the command:
+
+docker container ls -a
+
+
+stop a specific container
+docker container stop [container_id]
+
+stop all containers
+docker container stop $(docker container ls –aq)
+
+
+To remove a stopped container, use the command:
+docker container rm [container_id]
+
+To remove all stopped containers:
+docker container rm $(docker container ls –aq)
