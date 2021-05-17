@@ -13,6 +13,7 @@
 # limitations under the License.
 
 FROM envoyproxy/envoy:v1.16.1
+# FROM envoyproxy/envoy:v1.18-latest
 
 RUN apt-get update
 
