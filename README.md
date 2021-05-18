@@ -1,9 +1,11 @@
-# gRPC is the new WCF
+# gRPC samples
 Everytime there is a new speech course material and samples got updated
 
-November 2020 - [Update Conference 2020](https://www.updateconference.net/) course material (ASP .Net Core 5)
+May 2021 - [Techorama 2020](https://www.updateconference.net/) gRPC: Everything you will never find online - course material (ASP .Net Core 5)
 
-September 2020 - [FutureTech 2020](https://futuretech.nl/) course material (.Net Core 3.1)
+November 2020 - [Update Conference 2020](https://www.updateconference.net/) gRPC is the new WCF - course material (ASP .Net Core 5)
+
+September 2020 - [FutureTech 2020](https://futuretech.nl/) gRPC is the new WCF - course material (.Net Core 3.1)
 
 # Cloning the repository
 Open a Bash prompt, move on the parent directory where you want to clone the repository and type the following command on a Bash console:
