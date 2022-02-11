@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Protobuf Include="..\Protos\VideoStream1.proto" GrpcServices="Server" Link="Protos\VideoStream1.proto" />
-    <PackageReference Include="Google.Protobuf" Version="3.10.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.15.0" />
 
     <PackageReference Include="Grpc.Core" Version="2.24.0">
       <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
